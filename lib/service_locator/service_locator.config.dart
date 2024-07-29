@@ -31,10 +31,10 @@ _i174.GetIt $configDI(
     environment,
     environmentFilter,
   );
-  final loggerModule = _$LoggerModule();
   final autoRouterModule = _$AutoRouterModule();
-  gh.singleton<_i974.Logger>(() => loggerModule.logger());
+  final loggerModule = _$LoggerModule();
   gh.singleton<_i271.AppAutoRouter>(() => autoRouterModule.appAutoRouter());
+  gh.singleton<_i974.Logger>(() => loggerModule.logger());
   gh.factory<_i886.ColorGenerationRepository>(
       () => _i754.ColorGenerationRepositoryImpl());
   gh.lazySingleton<_i669.ColorGenerationUseCases>(() =>
@@ -44,6 +44,6 @@ _i174.GetIt $configDI(
   return getIt;
 }
 
-class _$LoggerModule extends _i205.LoggerModule {}
-
 class _$AutoRouterModule extends _i448.AutoRouterModule {}
+
+class _$LoggerModule extends _i205.LoggerModule {}
