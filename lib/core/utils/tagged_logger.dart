@@ -1,13 +1,17 @@
 import 'package:logger/logger.dart';
 
-extension TaggedLoggerExt on Logger {
-  Logger of(Object caller) => ofTag('${caller.runtimeType}');
-  Logger ofTag(String tag) => TaggedLogger._(tag, this);
-}
-
+/// Custom tagged logger
 class TaggedLogger implements Logger {
+  /// print logs with [tag]
   final String tag;
+
+  /// base [Logger]
   final Logger logger;
+
+  @override
+  Future<void> get init {
+    return Logger().init;
+  }
 
   const TaggedLogger._(this.tag, this.logger);
 
@@ -125,13 +129,20 @@ class TaggedLogger implements Logger {
   }
 
   @override
-  Future<void> close() async {}
+  Future<void> close() async {
+    await logger.close();
+  }
 
   @override
   bool isClosed() => false;
 
   @override
-  void t(message, {DateTime? time, Object? error, StackTrace? stackTrace}) {
+  void t(
+    dynamic message, {
+    DateTime? time,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
     log(
       Level.trace,
       message,
@@ -142,7 +153,12 @@ class TaggedLogger implements Logger {
   }
 
   @override
-  void wtf(message, {DateTime? time, Object? error, StackTrace? stackTrace}) {
+  void wtf(
+    dynamic message, {
+    DateTime? time,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
     log(
       Level.fatal,
       message,
@@ -151,9 +167,13 @@ class TaggedLogger implements Logger {
       stackTrace: stackTrace,
     );
   }
+}
 
-  @override
-  Future<void> get init {
-    return Logger().init;
-  }
+/// [TaggedLogger]
+extension TaggedLoggerExt on Logger {
+  /// logger with [runtimeType] tag
+  Logger of(Object caller) => ofTag('${caller.runtimeType}');
+
+  /// logger with tags
+  Logger ofTag(String tag) => TaggedLogger._(tag, this);
 }

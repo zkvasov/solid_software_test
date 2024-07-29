@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-
-import 'app_auto_router.gr.dart';
+import 'package:solid_software/presentation/router/app_auto_router.gr.dart';
 
 const _durationInMilliseconds = 300;
 
@@ -18,6 +17,8 @@ class _AppRoute extends CustomRoute {
 @AutoRouterConfig(
   replaceInRouteName: 'Page|Tab,Route',
 )
+
+/// Routes configuration
 class AppAutoRouter extends $AppAutoRouter {
   @override
   final List<AutoRoute> routes = [

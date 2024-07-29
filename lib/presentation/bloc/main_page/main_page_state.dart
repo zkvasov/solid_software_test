@@ -1,21 +1,15 @@
 part of 'main_page_cubit.dart';
 
-enum MainPageStatus {
-  init,
-  error,
-  idle,
-}
-
+/// BLoC State of [MainPage]
 class MainPageState extends Equatable {
+  /// Status of [MainPage]
   final MainPageStatus status;
-  final String errorMessage;
-  final Color? backgroundColor;
 
-  const MainPageState({
-    required this.status,
-    this.errorMessage = '',
-    this.backgroundColor,
-  });
+  /// error to notify user
+  final String errorMessage;
+
+  /// Scaffold backgroundColor
+  final Color? backgroundColor;
 
   @override
   List<Object?> get props => [
@@ -24,6 +18,14 @@ class MainPageState extends Equatable {
         backgroundColor,
       ];
 
+  /// BLoC State of [MainPage]
+  const MainPageState({
+    required this.status,
+    this.errorMessage = '',
+    this.backgroundColor,
+  });
+
+  /// copyWith()
   MainPageState copyWith({
     MainPageStatus? status,
     String? errorMessage,
@@ -35,4 +37,16 @@ class MainPageState extends Equatable {
       backgroundColor: backgroundColor ?? this.backgroundColor,
     );
   }
+}
+
+/// Status of [MainPage]
+enum MainPageStatus {
+  /// init
+  init,
+
+  /// error
+  error,
+
+  /// idle/common
+  idle,
 }

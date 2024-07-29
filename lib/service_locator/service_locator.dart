@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:solid_software/service_locator/service_locator.config.dart';
 
-import 'service_locator.config.dart';
-
+/// dependencies injection
 final sl = GetIt.instance;
 
 @InjectableInit(
@@ -11,7 +11,7 @@ final sl = GetIt.instance;
   asExtension: false,
 )
 
+/// dependencies injection configuration
 Future<void> configDI() async {
-
-  await $configDI(sl);
+  $configDI(sl);
 }

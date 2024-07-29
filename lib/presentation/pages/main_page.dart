@@ -1,12 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:solid_software/core/utils/extensions/context_ext.dart';
+import 'package:solid_software/core/utils/extensions/build_context_ext.dart';
 import 'package:solid_software/presentation/bloc/main_page/main_page_cubit.dart';
 import 'package:solid_software/service_locator/service_locator.dart';
 
+/// [MainPage]
 @RoutePage()
 class MainPage extends StatefulWidget implements AutoRouteWrapper {
+  /// [MainPage]
   const MainPage({
     super.key,
   });
@@ -40,7 +42,6 @@ class _MainPageState extends State<MainPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(state.errorMessage)),
         );
-        break;
       default:
         break;
     }
