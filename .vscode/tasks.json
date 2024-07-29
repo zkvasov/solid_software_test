@@ -1,0 +1,292 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "SolidApp: rebuild",
+            "detail": "Clean and Rebuild App",
+            "group": "build",
+            "dependsOn": [
+                "SolidApp: clean",
+                "SolidApp: dependencies",
+                "SolidApp: build",
+                "SolidApp: localize"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: clean",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [
+                "clean"
+            ],
+            "presentation": {
+                "echo": true,
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: dependencies",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [
+                "pub",
+                "get"
+            ],
+            "presentation": {
+                "echo": true,
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: localize",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": ["gen-l10n"],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: analyze",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [
+                "analyze"
+            ],
+            "presentation": {
+                "echo": true,
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: build",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [
+                "pub", 
+                "run", 
+                "build_runner",
+                "build", 
+                "--delete-conflicting-outputs",
+            ],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: Icons Launcher",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [ 
+                "pub", 
+                "run",
+                "flutter_launcher_icons:main", 
+                "-f", 
+                "launcher_icon.yaml", 
+            ],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: Build APK (Release)",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": ["build", "apk", "--release"],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: Build App Bundle (Release)",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": ["build", "appbundle", "--release"],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: Build IPA (Release)",
+            "type": "shell",
+            "command": "flutter",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": ["build", "ios", "--release"],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: Rename App Package",
+            "type": "shell",
+            "command": "flutter pub run change_app_package_name:main com.SolidApp.eu",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },    
+        {
+            "label": "SolidApp: Generate Splash",
+            "type": "shell",
+            "command": "flutter clean&&flutter pub get&&flutter pub run flutter_native_splash:create",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "SolidApp: Remove Splash",
+            "type": "shell",
+            "command": "flutter pub run flutter_native_splash:remove --path=splash_icon.yaml",
+            "group": "build",
+            "options": {
+                "cwd": "${cwd}"
+            },
+            "runOptions": {
+                "instanceLimit": 1,
+                "reevaluateOnRerun": false
+            },
+            "args": [],
+            "presentation": {
+                "echo": true,
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
